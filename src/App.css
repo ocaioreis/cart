@@ -1,38 +1,172 @@
-.App {
-  text-align: center;
+ul {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+li {
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.menu > li {
+  color: black;
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+.menu > li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header {
+  box-sizing: border-box;
+  height: 70px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #e7e7e7;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.menu li {
+  display: block;
+  padding: 0.5rem;
+}
+
+.btn-mobile {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .menu {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 70px;
+    right: 0px;
+    background: #e7e7e7;
+    height: 0px;
+    transition: 0.6s;
+    z-index: 1000;
+    visibility: hidden;
+    overflow-y: hidden;
+  }
+  .nav.active .menu {
+    height: calc(100vh - 70px);
+    visibility: visible;
+    overflow-y: auto; /*preciso disso aqui pra barra de scroll*/
+  }
+  .menu li {
+    padding: 1rem 0;
+    margin: 0 1rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+  }
+  .btn-mobile {
+    display: flex;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    gap: 0.5rem;
+  }
+  .hamburguer {
+    border-top: 2px solid;
+    width: 20px;
+    display: block;
+  }
+  .hamburguer::after,
+  .hamburguer::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    margin-top: 5px;
+    transition: 0.3s;
+    position: relative;
+  }
+  .nav.active .hamburguer {
+    border-top-color: transparent;
+  }
+  .nav.active .hamburguer::before {
+    transform: rotate(135deg);
+  }
+  .nav.active .hamburguer::after {
+    transform: rotate(-135deg);
+    top: -7px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.displayProdutos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .displayProdutos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .displayProdutos {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.card {
+  box-sizing: border-box;
+  width: 190px;
+  height: 254px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  user-select: none;
+  font-weight: bolder;
 }
 
-.App-link {
-  color: #61dafb;
+.card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+footer {
+  background-color: #e7e7e7;
+  position: absolute;
+  width: 100%;
+  font-family: sans-serif;
+}
+
+footer:hover {
+  transition: 1s;
+  background-color: green;
 }
